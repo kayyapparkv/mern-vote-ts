@@ -1,7 +1,7 @@
 import express, { Response, Request } from 'express';
 
 const server = express();
-const port = 3000;
+const port = 4000;
 
 server.listen(port, (err: any) => {
     if (err) {
