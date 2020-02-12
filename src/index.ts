@@ -1,7 +1,14 @@
-import express, { Response, Request } from 'express';
+import cors from 'cors';
+import bodyparser from 'body-parser';
+import express from 'express';
+
+import config from './config';
+import routes from './routes';
+import controller from './controller';
 
 const server = express();
-const port = 4000;
+const port = config.PORT;
+
 
 server.listen(port, (err: any) => {
     if (err) {
@@ -10,8 +17,12 @@ server.listen(port, (err: any) => {
     return console.log(`server is listening on port ${port}`);
 });
 
-server.get('/', (req: Request, res: Response) => {
-    return res.json({
-        'hello': 'world'
-    });
-});
+server.use(bodyparser.urlencoded({extended: true}));
+server.use(bodyparser.json());
+server.use(cors());
+
+
+server.use('/api/auth', routes.auth);
+// server.use('/api/polls', poll);
+server.use(controller.notFound);
+server.use(controller.errors);
