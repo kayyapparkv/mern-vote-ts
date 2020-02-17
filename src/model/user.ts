@@ -2,13 +2,10 @@ import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export interface UserSchemaDocument extends mongoose.Document {
-    // tslint:disable-next-line: ban-types
-    username: String;
-    // tslint:disable-next-line: ban-types
-    password: String;
+    username: string;
+    password: string;
     created: Date;
-    // tslint:disable-next-line: ban-types
-    polls: String;
+    polls: string;
 
 }
 
