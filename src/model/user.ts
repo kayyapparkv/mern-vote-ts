@@ -1,11 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, mongo } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export interface UserSchemaDocument extends mongoose.Document {
     username: string;
     password: string;
     created: Date;
-    polls: string;
+    polls: any[];
 
 }
 
@@ -44,4 +44,5 @@ userSchema.pre('save', async function(next) {
         return next(err);
     }
 });
-export default mongoose.model('User', userSchema);
+const user = mongoose.model<UserSchemaDocument>('User', userSchema);
+export default user;
