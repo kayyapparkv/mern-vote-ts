@@ -23,6 +23,6 @@ server.use(cors());
 
 
 server.use('/api/auth', routes.auth);
-// server.use('/api/polls', poll);
+server.use('/api/polls', routes.poll);
 server.use(controller.notFound);
 server.use(controller.errors);
