@@ -5,9 +5,10 @@ import config from '../config';
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}, (err) => {
     if (err) {
-        console.error(`Error connecting to DB, check the URL you have passed , if yes then make sure you have an active connecti0n with DB`);
+        console.error(`Error connecting to DB, check the URL you have passed , if yes then make sure you have an active connection with DB`);
+    } else {
+        console.log(`Successfully established an active connection with the DB`);
     }
-    console.log(`Successfully established an active connection with the DB`);
 });
 
 
