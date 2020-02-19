@@ -33,6 +33,18 @@ const createPoll = async(req: Request, res: Response, next: NextFunction) => {
     }
 };
 
+const showPoll = async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        const polls = await db.Poll.find().populate('user', ['id', 'username']);
+
+        res.status(200).json(polls);
+    } catch (err) {
+        err.status = 400;
+        return next(err);
+    }
+};
+
 export default {
-    createPoll
+    createPoll,
+    showPoll
 };
