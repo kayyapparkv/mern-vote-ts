@@ -36,10 +36,8 @@ userSchema.pre('save', async function(next) {
             return next();
         }
         const plainText = this.get('password');
-        console.log(`password before hashing ${plainText}`);
         const head = await bcrypt.hash(plainText, 10);
         this.set('password', head);
-        console.log(`passwors after hasing ${this.get('password')}`);
     } catch (err) {
         return next(err);
     }
