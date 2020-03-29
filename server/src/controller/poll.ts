@@ -118,7 +118,6 @@ const vote = async (req: Request, res: Response, next: NextFunction) => {
             let flag: number = 0;
             let count: number = 0;
             const vote = poll.options.map(options => {
-                console.log(`${options.option} , ${answer} , ${options.option === answer}`);
                 count = count + 1;
                 if (options.option === answer) {
                     return {
@@ -137,7 +136,6 @@ const vote = async (req: Request, res: Response, next: NextFunction) => {
                 if (count === flag) {
                     throw new Error('Answer provided does\'nt match');
                 }
-                console.log('getting inside of transactional');
                 poll.voted.push(userId);
                 poll.options = <any>vote;
                 await poll.save();
