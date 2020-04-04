@@ -32,6 +32,14 @@ const register = async(req: Request, res: Response, next: NextFunction) => {
 };
 const login = async(req: Request, res: Response, next: NextFunction) => {
     try {
+        if ( !(req.body.username && req.body.password)) {
+            throw new Error();
+        }
+    } catch (err) {
+        err.message = 'Fields must not be empty';
+        return next(err);
+    }
+    try {
         let user: any;
         user = await db.User.findOne({username: { $eq: req.body.username}});
         const {id, username} = user;
