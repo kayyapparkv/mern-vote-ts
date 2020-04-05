@@ -16,7 +16,7 @@ const NavBar = ({ auth, logout }) =>(
                 <a onClick = {logout}>Logout</a>
             </li>
         </ul>
-        {auth.isAuthenticated && <p>Logged in as {auth.user.username}</p>}
+{auth.isAuthenticated && <p>Welcome { auth.user.username } user</p>}
     </div>
 );
 
