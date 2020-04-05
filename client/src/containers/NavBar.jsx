@@ -1,5 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../store/actions'
 
-const NavBar = () => <div>NavBar works</div>;
+const NavBar = ({ auth, logout }) =>(
+    <div>
+        <ul>
+            <li>
+                 <Link to = '/Register'> Register </Link>
+            </li>
+            <li>
+                <Link to = '/Login'> Login </Link>
+            </li>
+            <li>
+                <a onClick = {logout}>Logout</a>
+            </li>
+        </ul>
+        {auth.isAuthenticated && <p>Logged in as {auth.user.username}</p>}
+    </div>
+);
 
-export default NavBar;
+export default connect(store => ({auth: store.auth}), {logout})(NavBar);
